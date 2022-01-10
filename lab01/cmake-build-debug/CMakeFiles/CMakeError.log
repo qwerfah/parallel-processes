@@ -1,0 +1,587 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /Library/Developer/CommandLineTools/usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+ld: library not found for -lSystem
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_c90d1 && [1/2] Building C object CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o -MF CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_c90d1.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_0a8ee && [1/2] Building C object CMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o -MF CMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_0a8ee.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_14ad6 && [1/2] Building C object CMakeFiles/cmTC_14ad6.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_14ad6.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_14ad6.dir/test_mpi.c.o -MF CMakeFiles/cmTC_14ad6.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_14ad6.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_14ad6.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_14ad6.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_6da8d && [1/2] Building C object CMakeFiles/cmTC_6da8d.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_6da8d.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_6da8d.dir/test_mpi.c.o -MF CMakeFiles/cmTC_6da8d.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_6da8d.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_6da8d.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_6da8d.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_a15e6 && [1/2] Building C object CMakeFiles/cmTC_a15e6.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_a15e6.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_a15e6.dir/test_mpi.c.o -MF CMakeFiles/cmTC_a15e6.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_a15e6.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_a15e6.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_a15e6.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_0012e && [1/2] Building C object CMakeFiles/cmTC_0012e.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_0012e.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_0012e.dir/test_mpi.c.o -MF CMakeFiles/cmTC_0012e.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_0012e.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_0012e.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_0012e.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_e9f18 && [1/2] Building C object CMakeFiles/cmTC_e9f18.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_e9f18.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_e9f18.dir/test_mpi.c.o -MF CMakeFiles/cmTC_e9f18.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_e9f18.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_e9f18.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_e9f18.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_2d341 && [1/2] Building C object CMakeFiles/cmTC_2d341.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_2d341.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_2d341.dir/test_mpi.c.o -MF CMakeFiles/cmTC_2d341.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_2d341.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_2d341.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_2d341.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_37c0e && [1/2] Building C object CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o -MF CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_37c0e.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_647ed && [1/2] Building C object CMakeFiles/cmTC_647ed.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_647ed.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_647ed.dir/test_mpi.c.o -MF CMakeFiles/cmTC_647ed.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_647ed.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_647ed.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_647ed.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_baab8 && [1/2] Building C object CMakeFiles/cmTC_baab8.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_baab8.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_baab8.dir/test_mpi.c.o -MF CMakeFiles/cmTC_baab8.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_baab8.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_baab8.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_baab8.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_ae9c6 && [1/2] Building C object CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o -MF CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_ae9c6.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_ffa8e && [1/2] Building C object CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o -MF CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_ffa8e.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_338ef && [1/2] Building C object CMakeFiles/cmTC_338ef.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_338ef.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_338ef.dir/test_mpi.c.o -MF CMakeFiles/cmTC_338ef.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_338ef.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_338ef.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_338ef.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_130e2 && [1/2] Building C object CMakeFiles/cmTC_130e2.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_130e2.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_130e2.dir/test_mpi.c.o -MF CMakeFiles/cmTC_130e2.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_130e2.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_130e2.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_130e2.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_c9a79 && [1/2] Building C object CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o -MF CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_c9a79.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_50646 && [1/2] Building C object CMakeFiles/cmTC_50646.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_50646.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_50646.dir/test_mpi.c.o -MF CMakeFiles/cmTC_50646.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_50646.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_50646.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_50646.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_136bd && [1/2] Building C object CMakeFiles/cmTC_136bd.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_136bd.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -MD -MT CMakeFiles/cmTC_136bd.dir/test_mpi.c.o -MF CMakeFiles/cmTC_136bd.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_136bd.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -MD: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MT CMakeFiles/cmTC_136bd.dir/test_mpi.c.o' [-Wunused-command-line-argument]
+clang: warning: argument unused during compilation: '-MF CMakeFiles/cmTC_136bd.dir/test_mpi.c.o.d' [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_7d2e3 && [1/2] Building C object CMakeFiles/cmTC_7d2e3.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_7d2e3.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_7d2e3.dir/test_mpi.c.o -MF CMakeFiles/cmTC_7d2e3.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_7d2e3.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_4acf4 && [1/2] Building C object CMakeFiles/cmTC_4acf4.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_4acf4.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_4acf4.dir/test_mpi.c.o -MF CMakeFiles/cmTC_4acf4.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_4acf4.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_58469 && [1/2] Building C object CMakeFiles/cmTC_58469.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_58469.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_58469.dir/test_mpi.c.o -MF CMakeFiles/cmTC_58469.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_58469.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_631cd && [1/2] Building C object CMakeFiles/cmTC_631cd.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_631cd.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_631cd.dir/test_mpi.c.o -MF CMakeFiles/cmTC_631cd.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_631cd.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_e7a98 && [1/2] Building C object CMakeFiles/cmTC_e7a98.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_e7a98.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_e7a98.dir/test_mpi.c.o -MF CMakeFiles/cmTC_e7a98.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_e7a98.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_af334 && [1/2] Building C object CMakeFiles/cmTC_af334.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_af334.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_af334.dir/test_mpi.c.o -MF CMakeFiles/cmTC_af334.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_af334.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_75a5b && [1/2] Building C object CMakeFiles/cmTC_75a5b.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_75a5b.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_75a5b.dir/test_mpi.c.o -MF CMakeFiles/cmTC_75a5b.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_75a5b.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_82610 && [1/2] Building C object CMakeFiles/cmTC_82610.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_82610.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_82610.dir/test_mpi.c.o -MF CMakeFiles/cmTC_82610.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_82610.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_30611 && [1/2] Building C object CMakeFiles/cmTC_30611.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_30611.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_30611.dir/test_mpi.c.o -MF CMakeFiles/cmTC_30611.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_30611.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_62fb6 && [1/2] Building C object CMakeFiles/cmTC_62fb6.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_62fb6.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_62fb6.dir/test_mpi.c.o -MF CMakeFiles/cmTC_62fb6.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_62fb6.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_c1e02 && [1/2] Building C object CMakeFiles/cmTC_c1e02.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_c1e02.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_c1e02.dir/test_mpi.c.o -MF CMakeFiles/cmTC_c1e02.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_c1e02.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_db2c0 && [1/2] Building C object CMakeFiles/cmTC_db2c0.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_db2c0.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_db2c0.dir/test_mpi.c.o -MF CMakeFiles/cmTC_db2c0.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_db2c0.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_f461d && [1/2] Building C object CMakeFiles/cmTC_f461d.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_f461d.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_f461d.dir/test_mpi.c.o -MF CMakeFiles/cmTC_f461d.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_f461d.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_19d95 && [1/2] Building C object CMakeFiles/cmTC_19d95.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_19d95.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_19d95.dir/test_mpi.c.o -MF CMakeFiles/cmTC_19d95.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_19d95.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_12a8e && [1/2] Building C object CMakeFiles/cmTC_12a8e.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_12a8e.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_12a8e.dir/test_mpi.c.o -MF CMakeFiles/cmTC_12a8e.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_12a8e.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_a05f3 && [1/2] Building C object CMakeFiles/cmTC_a05f3.dir/test_mpi.c.o
+FAILED: CMakeFiles/cmTC_a05f3.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_a05f3.dir/test_mpi.c.o -MF CMakeFiles/cmTC_a05f3.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_a05f3.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_38455 && [1/2] Building C object CMakeFiles/cmTC_38455.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_38455.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_38455.dir/test_mpi.c.o -MF CMakeFiles/cmTC_38455.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_38455.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
+The MPI test test_mpi for C in mode normal failed to compile with the following output:
+Change Dir: /Users/a.karpukhin/src/parallel-processes/lab01/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/Applications/CLion.app/Contents/bin/ninja/mac/ninja cmTC_9d3d6 && [1/2] Building C object CMakeFiles/cmTC_9d3d6.dir/test_mpi.c.o
+[31mFAILED: [0mCMakeFiles/cmTC_9d3d6.dir/test_mpi.c.o 
+/Library/Developer/CommandLineTools/usr/bin/cc  -isystem /usr/local/Cellar/mpich/3.4.3/include -fgnu89-inline -framework -std=gnu99 -MD -MT CMakeFiles/cmTC_9d3d6.dir/test_mpi.c.o -MF CMakeFiles/cmTC_9d3d6.dir/test_mpi.c.o.d -o CMakeFiles/cmTC_9d3d6.dir/test_mpi.c.o -c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c
+clang: warning: -framework -std=gnu99: 'linker' input unused [-Wunused-command-line-argument]
+/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FindMPI/test_mpi.c:6:12: fatal error: 'stdio.h' file not found
+#  include <stdio.h>
+           ^~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+
