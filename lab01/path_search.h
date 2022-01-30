@@ -11,7 +11,7 @@
 extern int pid;
 extern MPI_Request request;
 
-_Bool move_possible(board_t *board, pos_t pos, offset_t offset);
+_Bool move_possible(board_t *board, pos_t pos, offset_t offset, pos_t* new_pos);
 pos_t move(pos_t pos, offset_t offset);
 int find_path(board_t *board, pos_t pos, unsigned move_num);
 int find_path_continuation(board_t *board, pos_t *path, size_t path_len);

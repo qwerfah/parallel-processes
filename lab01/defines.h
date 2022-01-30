@@ -9,6 +9,7 @@
 #define ERR_OUT_OF_RANGE -2
 #define ERR_OPEN_FILE -3
 #define ERR_NO_PATH -4
+#define ERR_INVALID_ARGV -5
 #define OK 0
 
 #define NOT_IN_PATH 0

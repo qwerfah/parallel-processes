@@ -17,12 +17,13 @@ const offset_t possible_moves[POSSIBLE_MOVES_NUM] = {{2,  1},
                                                      {-1, 2},
                                                      {1,  2}};
 
-_Bool move_possible(board_t *board, pos_t pos, offset_t offset) {
+_Bool move_possible(board_t *board, pos_t pos, offset_t offset, pos_t* new_pos) {
     int x = ((int) pos.x) + offset.x_offset;
     int y = ((int) pos.y) + offset.y_offset;
     if (x >= 0 && y >= 0 && x < board->width && y < board->height) {
-        pos_t pos = {x, y};
-        return !board->ops.get(board, pos);
+        new_pos->x = x;
+        new_pos->y = y;
+        return !board->ops.get(board, *new_pos);
     }
     return NOT_IN_PATH;
 }
@@ -34,37 +35,34 @@ pos_t move(pos_t pos, offset_t offset) {
 
 int get_moves_count(board_t *board, pos_t pos) {
     int moves_count = 0;
+    pos_t temp;
 
     for (int i = 0; i < POSSIBLE_MOVES_NUM; i++) {
-        moves_count += move_possible(board, pos, possible_moves[i]);
+        moves_count += move_possible(board, pos, possible_moves[i], &temp);
     }
 
     return moves_count;
 }
 
-int find_next_pos(board_t *board, pos_t curr_pos, _Bool used[POSSIBLE_MOVES_NUM], pos_t *next_pos) {
+int find_next_pos(board_t *board, pos_t curr_pos, pos_t *next_pos) {
     int moves_count = 0;
     int offset_i = -1;
     int i = 0;
 
     // Find first possible not used move
     for (; i < POSSIBLE_MOVES_NUM; i++) {
-        if (!used[i] && move_possible(board, curr_pos, possible_moves[i])) {
-            *next_pos = move(curr_pos, possible_moves[i]);
+        if (move_possible(board, curr_pos, possible_moves[i], next_pos)) {
             moves_count = get_moves_count(board, *next_pos);
             offset_i = i;
             break;
-        } else {
-            used[i] = TRUE;
         }
     }
 
     // Search for best next not used move
     for (i += 1; i < POSSIBLE_MOVES_NUM; i++) {
-        if (!used[i] && move_possible(board, curr_pos, possible_moves[i])) {
-            pos_t new_pos = move(curr_pos, possible_moves[i]);
+        pos_t new_pos;
+        if (move_possible(board, curr_pos, possible_moves[i], &new_pos)) {
             int new_pos_moves_count = get_moves_count(board, new_pos);
-
             if (new_pos_moves_count < moves_count) {
                 moves_count = new_pos_moves_count;
                 *next_pos = new_pos;
@@ -72,14 +70,6 @@ int find_next_pos(board_t *board, pos_t curr_pos, _Bool used[POSSIBLE_MOVES_NUM]
             }
         } else {
 
-        }
-    }
-
-    if (offset_i >= 0) {
-        used[offset_i] = TRUE;
-    } else {
-        for (i = 0; i < POSSIBLE_MOVES_NUM; i++) {
-            used[i] = FALSE;
         }
     }
 
@@ -121,9 +111,8 @@ int find_path(board_t *board, pos_t pos, unsigned move_num) {
     }
 
     pos_t next_pos;
-    _Bool used[POSSIBLE_MOVES_NUM] = {FALSE};
 
-    while (find_next_pos(board, pos, used, &next_pos) >= 0) {
+    while (find_next_pos(board, pos, &next_pos) >= 0) {
         if (find_path(board, next_pos, move_num + 1) == PATH_FOUND) {
             if (pid != LEAD_PROC_ID && (rc = MPI_Send(board->raw,
                                                       board->max_moves,
@@ -201,7 +190,7 @@ int find_path_parallel_greedy(board_t *board, int num_proc) {
     pos_t pos_array[num_proc];
 
     if (pid == LEAD_PROC_ID) {
-        printf("lead proc with pid = %d split task stage\n", pid);
+        printf("lead proc with pid = %d split task stage for %d processes\n", pid, num_proc);
         srand(time(0));
         for (int child_pid = 1; child_pid < num_proc; child_pid++) {
             pos_t pos = generate_pos(pos_array, child_pid - 1, board->height, board->width);
@@ -251,12 +240,11 @@ int find_path_parallel(board_t *board, pos_t init_pos, int num_proc) {
     int rc = OK;
 
     if (pid == LEAD_PROC_ID) {
-        printf("lead proc with pid = %d split task stage\n", pid);
+        printf("lead proc with pid = %d split task stage for %d processes\n", pid, num_proc);
         for (int proc_num = num_proc - 1, proc_id = 1; i < epochs; i++, proc_num -= POSSIBLE_MOVES_NUM) {
             pos_t next_pos;
             for (j = 0; j < proc_num && j < POSSIBLE_MOVES_NUM; j++, proc_id++) {
-                if (move_possible(board, path[i], possible_moves[j])) {
-                    next_pos = move(path[i], possible_moves[j]);
+                if (move_possible(board, path[i], possible_moves[j], &next_pos)) {
                     pos_t buff[i + 2];
 
                     for (int k = 0; k <= i; k++) {
