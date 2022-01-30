@@ -17,15 +17,17 @@ const offset_t possible_moves[POSSIBLE_MOVES_NUM] = {{2,  1},
                                                      {-1, 2},
                                                      {1,  2}};
 
-_Bool move_possible(board_t *board, pos_t pos, offset_t offset, pos_t* new_pos) {
+_Bool move_possible(board_t *board, pos_t pos, offset_t offset, pos_t *new_pos) {
     int x = ((int) pos.x) + offset.x_offset;
     int y = ((int) pos.y) + offset.y_offset;
+
     if (x >= 0 && y >= 0 && x < board->width && y < board->height) {
         new_pos->x = x;
         new_pos->y = y;
         return !board->ops.get(board, *new_pos);
     }
-    return NOT_IN_PATH;
+
+    return FALSE;
 }
 
 pos_t move(pos_t pos, offset_t offset) {
@@ -44,7 +46,7 @@ int get_moves_count(board_t *board, pos_t pos) {
     return moves_count;
 }
 
-int find_next_pos(board_t *board, pos_t curr_pos, pos_t *next_pos) {
+_Bool try_find_next_pos(board_t *board, pos_t curr_pos, pos_t *next_pos) {
     int moves_count = 0;
     int offset_i = -1;
     int i = 0;
@@ -73,10 +75,10 @@ int find_next_pos(board_t *board, pos_t curr_pos, pos_t *next_pos) {
         }
     }
 
-    return offset_i;
+    return (offset_i >= 0);
 }
 
-int find_path(board_t *board, pos_t pos, unsigned move_num) {
+err_code_t find_path(board_t *board, pos_t pos, unsigned move_num) {
     int rc = OK;
 
     if (pid == LEAD_PROC_ID) {
@@ -112,7 +114,7 @@ int find_path(board_t *board, pos_t pos, unsigned move_num) {
 
     pos_t next_pos;
 
-    while (find_next_pos(board, pos, &next_pos) >= 0) {
+    while (try_find_next_pos(board, pos, &next_pos)) {
         if (find_path(board, next_pos, move_num + 1) == PATH_FOUND) {
             if (pid != LEAD_PROC_ID && (rc = MPI_Send(board->raw,
                                                       board->max_moves,
@@ -130,7 +132,7 @@ int find_path(board_t *board, pos_t pos, unsigned move_num) {
     }
 
     board->ops.set(board, pos, NOT_IN_PATH);
-    return ERR_NO_PATH;
+    return PATH_NOT_FOUND;
 }
 
 int find_path_continuation(board_t *board, pos_t *path, size_t path_len) {
@@ -161,7 +163,7 @@ int find_path_continuation(board_t *board, pos_t *path, size_t path_len) {
     return find_path(board, path[i], i + 1);
 }
 
-_Bool pos_in_array(pos_t pos, pos_t* pos_array, int pos_num) {
+_Bool pos_in_array(pos_t pos, pos_t *pos_array, int pos_num) {
     if (!pos_array) return FALSE;
 
     for (int i = 0; i < pos_num; i++) {
@@ -171,7 +173,7 @@ _Bool pos_in_array(pos_t pos, pos_t* pos_array, int pos_num) {
     return FALSE;
 }
 
-pos_t generate_pos(pos_t* pos_array, int pos_num, size_t height, size_t width) {
+pos_t generate_pos(pos_t *pos_array, int pos_num, size_t height, size_t width) {
     pos_t pos;
 
     do {
@@ -185,7 +187,7 @@ pos_t generate_pos(pos_t* pos_array, int pos_num, size_t height, size_t width) {
 }
 
 
-int find_path_parallel_greedy(board_t *board, int num_proc) {
+err_code_t find_path_parallel_greedy(board_t *board, int num_proc, pos_t *init_pos) {
     int rc = OK;
     pos_t pos_array[num_proc];
 
@@ -202,8 +204,8 @@ int find_path_parallel_greedy(board_t *board, int num_proc) {
             }
         }
 
-        pos_t pos = generate_pos(pos_array, num_proc - 1, board->height, board->width);
-        printf("lead proc with pid = %d; init pos generated: (%d, %d)\n", pid, pos.x, pos.y);
+        *init_pos = generate_pos(pos_array, num_proc - 1, board->height, board->width);
+        printf("lead proc with pid = %d; init pos generated: (%d, %d)\n", pid, init_pos->x, init_pos->y);
 
         if ((rc = MPI_Irecv(board->raw,
                             board->max_moves,
@@ -216,18 +218,17 @@ int find_path_parallel_greedy(board_t *board, int num_proc) {
             return rc;
         }
 
-        return find_path(board, pos, 1);
+        return find_path(board, *init_pos, 1);
     } else {
-        pos_t pos;
         MPI_Status status;
 
-        if ((rc = MPI_Recv(&pos, sizeof(pos_t), MPI_BYTE, LEAD_PROC_ID, 0, MPI_COMM_WORLD, &status)) < 0) {
+        if ((rc = MPI_Recv(init_pos, sizeof(pos_t), MPI_BYTE, LEAD_PROC_ID, 0, MPI_COMM_WORLD, &status)) < 0) {
             MPI_Abort(MPI_COMM_WORLD, rc);
             return rc;
         }
 
         // printf("child proc with pid = %d init pos received: (%d, %d)\n", pid, pos.x, pos.y);
-        return find_path(board, pos, 1);
+        return find_path(board, *init_pos, 1);
     }
 }
 
@@ -306,12 +307,16 @@ _Bool path_is_correct(board_t *board) {
 
     for (i = 0; i < board->height && value != 1; i++) {
         for (j = 0; j < board->width && value != 1; j++) {
-            pos.x = j; pos.y = i;
+            pos.x = j;
+            pos.y = i;
             value = board->ops.get(board, pos);
         }
     }
 
-    if (value != 1) return FALSE;
+    if (value != 1) {
+        printf("\nINVALID VALUE IN INIT POS: INIT = %d\n", value);
+        return FALSE;
+    }
 
     for (i = 2; i < board->max_moves; i++) {
         _Bool next_pos_found = FALSE;
@@ -320,13 +325,28 @@ _Bool path_is_correct(board_t *board) {
         for (j = 0; j < POSSIBLE_MOVES_NUM && !next_pos_found; j++) {
             if (test_move_possible(board, pos, possible_moves[j])) {
                 next_pos = move(pos, possible_moves[j]);
-                next_pos_found = (board->ops.get(board, next_pos) == i);
+                value = board->ops.get(board, next_pos);
+                if (value == i) {
+                    next_pos_found = TRUE;
+                } else if (value == 0) {
+                    board->ops.set(board, next_pos, i);
+                    next_pos_found = TRUE;
+                }
             }
         }
 
         if (next_pos_found) {
             pos = next_pos;
         } else {
+            for (j = 0; j < POSSIBLE_MOVES_NUM && !next_pos_found; j++) {
+                if (test_move_possible(board, pos, possible_moves[j])) {
+                    next_pos = move(pos, possible_moves[j]);
+                    printf("\nINVALID VALUE IN NEXT POS: PREV = %d NEXT = %d\n",
+                           board->ops.get(board, pos),
+                           board->ops.get(board, next_pos));
+                }
+            }
+
             return FALSE;
         }
     }

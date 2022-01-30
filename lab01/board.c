@@ -119,7 +119,7 @@ int fprint(board_t *board, char *filename)
     }
     else
     {
-        rc = ERR_OPEN_FILE;
+        rc = ERR_OPEN_FILE_TO_WRITE;
     }
 
     return rc;

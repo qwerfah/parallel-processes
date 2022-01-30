@@ -6,7 +6,7 @@
 
 int pid = MPI_ANY_SOURCE;
 
-int program_init(int argc, char *argv[], int *num_proc, int *proc_id) {
+err_code_t program_init(int argc, char *argv[], int *num_proc, int *proc_id) {
     int rc;
 
     if ((rc = MPI_Init(&argc, &argv)) != MPI_SUCCESS) {
@@ -23,7 +23,7 @@ int program_init(int argc, char *argv[], int *num_proc, int *proc_id) {
     return rc;
 }
 
-int main(int argc, char *argv[]) {
+err_code_t main(int argc, char *argv[]) {
     size_t board_height;
     size_t board_width;
     int rc = OK;
@@ -62,13 +62,14 @@ int main(int argc, char *argv[]) {
                 start_time = MPI_Wtime();
             }
 
-            rc = find_path_parallel_greedy(&board, num_proc);
+            pos_t init_pos;
+            rc = find_path_parallel_greedy(&board, num_proc, &init_pos);
 
             if (pid == LEAD_PROC_ID) {
                 end_time = MPI_Wtime();
             }
 
-            if (!rc && pid == LEAD_PROC_ID) {   // search
+            if (pid == LEAD_PROC_ID && rc == PATH_FOUND) {   // search
                 if (path_is_correct(&board)) {                                                  // path check
                     printf("\nPATH FOUND\n");
                     printf("\nTIME SPENT: %lf sec\n", end_time - start_time);
@@ -78,13 +79,17 @@ int main(int argc, char *argv[]) {
                     }
 
                     if (!(rc = board.ops.fprint(&board, "out"))) {
-                        printf("\nRESULT SAVED IN FILE\n");
+                        printf("\nRESULT SAVED IN FILE out\n");
                     } else {
                         printf("\nERROR WHILE SAVING RESULT TO FILE\n");
                     }
                 } else {
-                    printf("\nPATH NOT FOUND\n");
+                    printf("\nPATH FOUND BUT NOT VALID\n"); // must be unreachable
                 }
+            } else if (pid == LEAD_PROC_ID && rc == PATH_NOT_FOUND) {
+                printf("\nPATH NOT FOUND\n");
+            } else if (pid == LEAD_PROC_ID) {
+                error_code_handler(rc);
             }
 
             MPI_Abort(MPI_COMM_WORLD, OK);
