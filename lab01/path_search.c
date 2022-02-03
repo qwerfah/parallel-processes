@@ -4,9 +4,14 @@
 
 #include "path_search.h"
 #include "string.h"
+#include "task.h"
+
 #include <time.h>
 
-MPI_Request request = MPI_ANY_TAG;
+static MPI_Request recv_request = MPI_ANY_TAG;
+static MPI_Request send_request = MPI_ANY_TAG;
+static int recv_code = PATH_NOT_FOUND;
+static int send_code = PATH_FOUND;
 
 const offset_t possible_moves[POSSIBLE_MOVES_NUM] = {{2,  1},
                                                      {2,  -1},
@@ -18,8 +23,8 @@ const offset_t possible_moves[POSSIBLE_MOVES_NUM] = {{2,  1},
                                                      {1,  2}};
 
 _Bool move_possible(board_t *board, pos_t pos, offset_t offset, pos_t *new_pos) {
-    int x = ((int) pos.x) + offset.x_offset;
-    int y = ((int) pos.y) + offset.y_offset;
+    long long x = ((long long) pos.x) + (long long) offset.x_offset;
+    long long y = ((long long) pos.y) + (long long) offset.y_offset;
 
     if (x >= 0 && y >= 0 && x < board->width && y < board->height) {
         new_pos->x = x;
@@ -78,56 +83,55 @@ _Bool try_find_next_pos(board_t *board, pos_t curr_pos, pos_t *next_pos) {
     return (offset_i >= 0);
 }
 
+err_code_t check(void) {
+    int rc = OK;
+    int flag = FALSE;
+    MPI_Status status;
+
+    if ((rc = MPI_Iprobe(MPI_ANY_SOURCE, pid, MPI_COMM_WORLD, &flag, &status)) < 0) {
+        MPI_Abort(MPI_COMM_WORLD, rc);
+        return rc;
+    }
+
+    if (flag == TRUE) {
+        return ((recv_code == PATH_FOUND) ? PATH_FOUND_ANOTHER : ERR_UNKNOWN_CODE);
+    }
+
+    return PATH_NOT_FOUND;
+}
+
 err_code_t find_path(board_t *board, pos_t pos, unsigned move_num) {
     int rc = OK;
 
-    if (pid == LEAD_PROC_ID) {
-        int flag;
-        MPI_Status status;
-
-        if ((rc = MPI_Test(&request, &flag, &status)) < 0) {
-            MPI_Abort(MPI_COMM_WORLD, rc);
-            return rc;
-        }
-
-        if (flag) {
-            // printf("lead proc: path found\n");
-            return PATH_FOUND;
-        }
+    if ((rc = check()) != PATH_NOT_FOUND) {
+        return rc;
     }
 
     board->ops.set(board, pos, move_num);
     if (move_num == board->max_moves) {
-        if (pid != LEAD_PROC_ID && (rc = MPI_Send(board->raw,
-                                                  board->max_moves,
-                                                  MPI_UNSIGNED,
-                                                  LEAD_PROC_ID,
-                                                  0,
-                                                  MPI_COMM_WORLD)) < 0) {
-            MPI_Abort(MPI_COMM_WORLD, rc);
-            return rc;
+        send_code = PATH_FOUND;
+
+        for (int i = 0; i < num_proc; i++) {
+            if (i != pid && (rc = MPI_Send(&send_code,
+                                           1,
+                                           MPI_INT,
+                                           i,
+                                           i,
+                                           MPI_COMM_WORLD)) < 0) {
+                MPI_Abort(MPI_COMM_WORLD, rc);
+                return rc;
+            }
         }
 
-        // printf("child proc with pid = %d: path found\n", pid);
         return PATH_FOUND;
     }
 
     pos_t next_pos;
 
     while (try_find_next_pos(board, pos, &next_pos)) {
-        if (find_path(board, next_pos, move_num + 1) == PATH_FOUND) {
-            if (pid != LEAD_PROC_ID && (rc = MPI_Send(board->raw,
-                                                      board->max_moves,
-                                                      MPI_UNSIGNED,
-                                                      LEAD_PROC_ID,
-                                                      0,
-                                                      MPI_COMM_WORLD)) < 0) {
-                MPI_Abort(MPI_COMM_WORLD, rc);
-                return rc;
-            }
-
-            // printf("child proc with pid = %d: path found\n", pid);
-            return PATH_FOUND;
+        rc = find_path(board, next_pos, move_num + 1);
+        if (rc != PATH_NOT_FOUND) {
+            return rc;
         }
     }
 
@@ -135,176 +139,83 @@ err_code_t find_path(board_t *board, pos_t pos, unsigned move_num) {
     return PATH_NOT_FOUND;
 }
 
-int find_path_continuation(board_t *board, pos_t *path, size_t path_len) {
-    int i = 0;
+// Parallel Euler search: different branches in search tree is processed by different processes
+// Less effective because of strong dependency of initial search position
+err_code_t find_path_parallel(board_t *board, pos_t *pos, unsigned task_num, unsigned move_idx) {
+    if (pos == NULL) {
+        return ERR_NULL_POINTER;
+    } else if (task_num == 0) {
+        return ERR_INVALID_TASK_NUM;
+    }
+
     int rc = OK;
+    static int curr_pid = 0;
 
     if (pid == LEAD_PROC_ID) {
-        // board_t new_board;
-        // init(&new_board, default_board_ops(), board->size);
-        // MPI_Request request;
+        printf("\nLEAD: SPLIT TASKS FOR %d PROCESSES STAGE=%d\n", num_proc, move_idx);
+        board->ops.set(board, pos[move_idx], move_idx + 1);
 
-        if ((rc = MPI_Irecv(board->raw,
-                            board->max_moves,
-                            MPI_UNSIGNED,
-                            MPI_ANY_SOURCE,
-                            0,
-                            MPI_COMM_WORLD,
-                            &request)) < 0) {
-            MPI_Abort(MPI_COMM_WORLD, rc);
-            return rc;
-        }
-    }
+        task_t task = {.pid = MPI_ANY_SOURCE, .prefix = {0}, .prefix_length = 0};
 
-    for (; i < path_len - 1; i++) {
-        board->ops.set(board, path[i], i + 1);
-    }
-
-    return find_path(board, path[i], i + 1);
-}
-
-_Bool pos_in_array(pos_t pos, pos_t *pos_array, int pos_num) {
-    if (!pos_array) return FALSE;
-
-    for (int i = 0; i < pos_num; i++) {
-        if (pos_array[i].x == pos.x && pos_array[i].y == pos.y) return TRUE;
-    }
-
-    return FALSE;
-}
-
-pos_t generate_pos(pos_t *pos_array, int pos_num, size_t height, size_t width) {
-    pos_t pos;
-
-    do {
-        pos.x = rand() % width;
-        pos.y = rand() % height;
-    } while (pos_in_array(pos, pos_array, pos_num));
-
-    pos_array[pos_num] = pos;
-
-    return pos;
-}
-
-
-err_code_t find_path_parallel_greedy(board_t *board, int num_proc, pos_t *init_pos) {
-    int rc = OK;
-    pos_t pos_array[num_proc];
-
-    if (pid == LEAD_PROC_ID) {
-        printf("lead proc with pid = %d split task stage for %d processes\n", pid, num_proc);
-        srand(time(0));
-        for (int child_pid = 1; child_pid < num_proc; child_pid++) {
-            pos_t pos = generate_pos(pos_array, child_pid - 1, board->height, board->width);
-
-            printf("lead proc with pid = %d; init pos generated: (%d, %d)\n", pid, pos.x, pos.y);
-            if ((rc = MPI_Send(&pos, sizeof(pos_t), MPI_BYTE, child_pid, 0, MPI_COMM_WORLD)) < 0) {
-                MPI_Abort(MPI_COMM_WORLD, rc);
-                return rc;
-            }
-        }
-
-        *init_pos = generate_pos(pos_array, num_proc - 1, board->height, board->width);
-        printf("lead proc with pid = %d; init pos generated: (%d, %d)\n", pid, init_pos->x, init_pos->y);
-
-        if ((rc = MPI_Irecv(board->raw,
-                            board->max_moves,
-                            MPI_UNSIGNED,
-                            MPI_ANY_SOURCE,
-                            0,
-                            MPI_COMM_WORLD,
-                            &request)) < 0) {
-            MPI_Abort(MPI_COMM_WORLD, rc);
-            return rc;
-        }
-
-        return find_path(board, *init_pos, 1);
-    } else {
-        MPI_Status status;
-
-        if ((rc = MPI_Recv(init_pos, sizeof(pos_t), MPI_BYTE, LEAD_PROC_ID, 0, MPI_COMM_WORLD, &status)) < 0) {
-            MPI_Abort(MPI_COMM_WORLD, rc);
-            return rc;
-        }
-
-        // printf("child proc with pid = %d init pos received: (%d, %d)\n", pid, pos.x, pos.y);
-        return find_path(board, *init_pos, 1);
-    }
-}
-
-int find_path_parallel(board_t *board, pos_t init_pos, int num_proc) {
-    pos_t path[board->max_moves];
-    path[0] = init_pos;
-    int epochs = num_proc / POSSIBLE_MOVES_NUM + 1;
-    int i = 0;
-    int j;
-    int rc = OK;
-
-    if (pid == LEAD_PROC_ID) {
-        printf("lead proc with pid = %d split task stage for %d processes\n", pid, num_proc);
-        for (int proc_num = num_proc - 1, proc_id = 1; i < epochs; i++, proc_num -= POSSIBLE_MOVES_NUM) {
-            pos_t next_pos;
-            for (j = 0; j < proc_num && j < POSSIBLE_MOVES_NUM; j++, proc_id++) {
-                if (move_possible(board, path[i], possible_moves[j], &next_pos)) {
-                    pos_t buff[i + 2];
-
-                    for (int k = 0; k <= i; k++) {
-                        buff[k] = path[k];
-                    }
-                    buff[i + 1] = next_pos;
-
-                    if ((rc = MPI_Send(buff, (i + 2) * sizeof(pos_t), MPI_BYTE, proc_id, 0, MPI_COMM_WORLD)) < 0) {
-                        MPI_Abort(MPI_COMM_WORLD, rc);
+        // Create tasks for parallel processes
+        while (task_num > 0) {
+            if (try_find_next_pos(board, pos[move_idx], &(pos[move_idx + 1]))) {
+                if (task.pid != MPI_ANY_SOURCE) {
+                    if ((rc = add_task_to_list(&task)) != OK) {
                         return rc;
                     }
+                    task_num--;
+                    print_task(&task);
+                    printf("\nLEAD: TASK FOR PID=%d CREATED, %d TASKS LEFT\n", curr_pid, task_num);
+                    curr_pid = (curr_pid + 1) % num_proc;
                 }
+
+                board->ops.set(board, pos[move_idx + 1], move_idx + 1);
+                task = task_ctr(curr_pid, pos, move_idx + 2);
+            } else {
+                return find_path_parallel(board, pos, task_num, move_idx + 1);
             }
-            path[i + 1] = next_pos;
         }
-        path[i] = move(path[i - 1], possible_moves[j]);
-        return find_path_continuation(board, path, i);
-    } else {
-        int count = pid / POSSIBLE_MOVES_NUM + 2;
-        pos_t buff[count];
-        MPI_Status status;
 
-        printf("child proc with pid = %d receiving init path with size %d from lead proc;\n", pid, count);
-
-        if ((rc = MPI_Recv(buff, count * sizeof(pos_t), MPI_BYTE, LEAD_PROC_ID, 0, MPI_COMM_WORLD, &status)) < 0) {
-            MPI_Abort(MPI_COMM_WORLD, rc);
+        // Send tasks to all processes except lead
+        if ((rc = schedule_tasks()) != OK) {
             return rc;
         }
-
-        char msg[1000];
-        char tmp[200];
-
-        snprintf(tmp, 200, "child proc with pid = %d init path received:", pid);
-        snprintf(msg, 1000, "%s", tmp);
-        int offset = 0;
-
-        for (int i = 0; i < count; i++) {
-            offset += strlen(tmp);
-            snprintf(tmp, 200, " (%d, %d)", buff[i].x, buff[i].y);
-            snprintf(msg + offset, 1000 - offset, "%s", tmp);
+    } else {
+        if ((rc = accept_tasks()) != OK) {
+            return rc;
         }
-
-        printf("%s\n", msg);
-
-        return find_path_continuation(board, buff, count);
     }
+
+    if ((rc = MPI_Irecv(&recv_code,
+                        1,
+                        MPI_INT,
+                        MPI_ANY_SOURCE,
+                        pid,
+                        MPI_COMM_WORLD,
+                        &recv_request)) < 0) {
+        MPI_Abort(MPI_COMM_WORLD, rc);
+        return rc;
+    }
+
+    return execute_tasks(board, find_path);
 }
 
+// Check if move is possible in solved matrix
+// (no new position returns and no matrix cell value checks)
 _Bool test_move_possible(board_t *board, pos_t pos, offset_t offset) {
-    int x = ((int) pos.x) + offset.x_offset;
-    int y = ((int) pos.y) + offset.y_offset;
+    long long x = ((long long) pos.x) + (long long) offset.x_offset;
+    long long y = ((long long) pos.y) + (long long) offset.y_offset;
     return (x >= 0 && y >= 0 && x < board->width && y < board->height);
 }
 
+// Check if the solved matrix is correct
 _Bool path_is_correct(board_t *board) {
     int i, j;
     int value = 0;
     pos_t pos;
 
+    // Find initial position (must be 1 in corresponding matrix cell)
     for (i = 0; i < board->height && value != 1; i++) {
         for (j = 0; j < board->width && value != 1; j++) {
             pos.x = j;

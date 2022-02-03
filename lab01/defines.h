@@ -11,7 +11,8 @@
 
 #define NOT_IN_PATH 0
 #define PATH_FOUND 0
-#define PATH_NOT_FOUND 1
+#define PATH_FOUND_ANOTHER 1
+#define PATH_NOT_FOUND 2
 
 #define POSSIBLE_MOVES_NUM 8
 #define LEAD_PROC_ID 0
