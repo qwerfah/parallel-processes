@@ -103,40 +103,51 @@ err_code_t check(void) {
 err_code_t find_path(board_t *board, pos_t pos, unsigned move_num) {
     int rc = OK;
 
-    if ((rc = check()) != PATH_NOT_FOUND) {
-        return rc;
-    }
+    pos_t prev_pos;
 
-    board->ops.set(board, pos, move_num);
-    if (move_num == board->max_moves) {
-        send_code = PATH_FOUND;
+    pos_t *stack = calloc(board->max_moves, sizeof(pos_t));
+    int sp = 0;
 
-        for (int i = 0; i < num_proc; i++) {
-            if (i != pid && (rc = MPI_Send(&send_code,
-                                           1,
-                                           MPI_INT,
-                                           i,
-                                           i,
-                                           MPI_COMM_WORLD)) < 0) {
-                MPI_Abort(MPI_COMM_WORLD, rc);
-                return rc;
-            }
-        }
-
-        return PATH_FOUND;
-    }
-
-    pos_t next_pos;
-
-    while (try_find_next_pos(board, pos, &next_pos)) {
-        rc = find_path(board, next_pos, move_num + 1);
-        if (rc != PATH_NOT_FOUND) {
+    while (1) {
+        if ((rc = check()) != PATH_NOT_FOUND) {
+            free(stack);
             return rc;
         }
-    }
 
-    board->ops.set(board, pos, NOT_IN_PATH);
-    return PATH_NOT_FOUND;
+        board->ops.set(board, pos, move_num);
+        if (move_num == board->max_moves) {
+            send_code = PATH_FOUND;
+
+            for (int i = 0; i < num_proc; i++) {
+                if (i != pid && (rc = MPI_Send(&send_code,
+                                               1,
+                                               MPI_INT,
+                                               i,
+                                               i,
+                                               MPI_COMM_WORLD)) < 0) {
+                    MPI_Abort(MPI_COMM_WORLD, rc);
+                    free(stack);
+                    return rc;
+                }
+            }
+
+            free(stack);
+            return PATH_FOUND;
+        }
+
+        pos_t next_pos;
+
+        if (try_find_next_pos(board, pos, &next_pos)) {
+            stack[sp++] = pos;
+            pos = next_pos;
+            move_num++;
+            continue;
+        }
+
+        board->ops.set(board, pos, NOT_IN_PATH);
+        pos = stack[sp--];
+        move_num--;
+    }
 }
 
 // Parallel Euler search: different branches in search tree is processed by different processes

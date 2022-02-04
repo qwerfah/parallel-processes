@@ -70,7 +70,7 @@ err_code_t main(int argc, char *argv[]) {
                                         : POSSIBLE_MOVES_NUM,
                                     0);
 
-            MPI_Barrier(MPI_COMM_WORLD);
+            //MPI_Barrier(MPI_COMM_WORLD);
 
             if (rc == PATH_FOUND) {
                 end_time = MPI_Wtime();
@@ -102,6 +102,8 @@ err_code_t main(int argc, char *argv[]) {
             } else {
                 error_code_handler(rc);
             }
+
+            MPI_Barrier(MPI_COMM_WORLD);
 
             MPI_Finalize();
         }
