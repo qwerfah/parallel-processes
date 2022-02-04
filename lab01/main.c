@@ -21,6 +21,13 @@ err_code_t program_init(int argc, char *argv[]) {
         MPI_Abort(MPI_COMM_WORLD, rc);
     }
 
+    char proc_name[MPI_MAX_PROCESSOR_NAME];
+    int len;
+
+    MPI_Get_processor_name(proc_name, &len);
+
+    printf("\nPID=%d: PROC_NAME=%s\n", pid, proc_name);
+
     return rc;
 }
 
