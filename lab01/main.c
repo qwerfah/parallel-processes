@@ -25,30 +25,60 @@ err_code_t program_init(int argc, char *argv[]) {
 }
 
 err_code_t main(int argc, char *argv[]) {
-    size_t board_height;
-    size_t board_width;
+    size_t board_height = 20;
+    size_t board_width = 20;
+    size_t init_x = 0, init_y = 0;
     int rc = OK;
     char *end = NULL;
 
     switch (argc) {
-        case 3:
-            if ((board_height = strtol(argv[1], &end, 10)) < 1 || *end != '\0') {
+        case 5:
+            if ((board_height = strtol(argv[3], &end, 10)) < 1 || *end != '\0') {
                 printf("\ninvalid board height value\n");
                 return ERR_INVALID_ARGV;
             }
-            if ((board_width = strtol(argv[2], &end, 10)) < 1 || *end != '\0') {
+            if ((board_width = strtol(argv[4], &end, 10)) < 1 || *end != '\0') {
                 printf("\ninvalid board width value\n");
+                return ERR_INVALID_ARGV;
+            }
+            if ((init_x = strtol(argv[1], &end, 10)) < 0 || init_x >= board_width || *end != '\0') {
+                printf("\ninvalid init x value\n");
+                return ERR_INVALID_ARGV;
+            }
+            if ((init_y = strtol(argv[2], &end, 10)) < 0 || init_y >= board_height || *end != '\0') {
+                printf("\ninvalid init y value\n");
+                return ERR_INVALID_ARGV;
+            }
+            break;
+        case 4:
+            if ((board_height = board_width = strtol(argv[3], &end, 10)) < 1 || *end != '\0') {
+                printf("\ninvalid board size value\n");
+                return ERR_INVALID_ARGV;
+            }
+            if ((init_x = strtol(argv[1], &end, 10)) < 0 || init_x >= board_width || *end != '\0') {
+                printf("\ninvalid init x value\n");
+                return ERR_INVALID_ARGV;
+            }
+            if ((init_y = strtol(argv[2], &end, 10)) < 0 || init_y >= board_height || *end != '\0') {
+                printf("\ninvalid init y value\n");
+                return ERR_INVALID_ARGV;
+            }
+            break;
+        case 3:
+            if ((init_x = strtol(argv[1], &end, 10)) < 0 || init_x >= board_width || *end != '\0') {
+                printf("\ninvalid init x value\n");
+                return ERR_INVALID_ARGV;
+            }
+            if ((init_y = strtol(argv[2], &end, 10)) < 0 || init_y >= board_height || *end != '\0') {
+                printf("\ninvalid init y value\n");
                 return ERR_INVALID_ARGV;
             }
             break;
         case 2:
-            if ((board_height = board_width = strtol(argv[1], &end, 10)) < 1 || *end != '\0') {
-                printf("\ninvalid board size value\n");
-                return ERR_INVALID_ARGV;
-            }
-            break;
+            printf("\ninvalid arg num\n");
+            return ERR_INVALID_ARGV;
         default:
-            board_height = board_width = 20;
+            break;
     }
 
     board_t board = create();
@@ -59,8 +89,8 @@ err_code_t main(int argc, char *argv[]) {
             double start_time, end_time;
             pos_t prefix[100];
 
-            prefix[0].x = 0;
-            prefix[0].y = 0;
+            prefix[0].x = init_x;
+            prefix[0].y = init_y;
 
             start_time = MPI_Wtime();
             rc = find_path_parallel(&board,
@@ -79,9 +109,9 @@ err_code_t main(int argc, char *argv[]) {
                     printf("\nPID=%d: PATH IS VALID\n", pid);
                     printf("\nPID=%d: TIME SPENT: %lf SEC\n", pid, end_time - start_time);
 
-                    if (board_height <= 30 && board_width <= 30) {
+                    /*if (board_height <= 30 && board_width <= 30) {
                         board.ops.print(&board);
-                    }
+                    }*/
 
                     char filename[100];
 
