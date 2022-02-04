@@ -77,7 +77,7 @@ err_code_t main(int argc, char *argv[]) {
                 printf("\nPID=%d: PATH FOUND, VALIDATING\n", pid);
                 if (path_is_correct(&board)) {
                     printf("\nPID=%d: PATH IS VALID\n", pid);
-                    printf("\nTIME SPENT: %lf SEC\n", end_time - start_time);
+                    printf("\nPID=%d: TIME SPENT: %lf SEC\n", pid, end_time - start_time);
 
                     if (board_height <= 30 && board_width <= 30) {
                         board.ops.print(&board);
@@ -88,17 +88,17 @@ err_code_t main(int argc, char *argv[]) {
                     sprintf(filename, "out#%d", pid);
 
                     if (!(rc = board.ops.fprint(&board, filename))) {
-                        printf("\nRESULT SAVED IN FILE out\n");
+                        printf("\nPID=%d: RESULT SAVED IN FILE out\n", pid);
                     } else {
-                        printf("\nERROR WHILE SAVING RESULT TO FILE\n");
+                        printf("\nPID=%d: ERROR WHILE SAVING RESULT TO FILE\n", pid);
                     }
                 } else {
-                    printf("\nPATH FOUND BUT NOT VALID\n"); // must be unreachable
+                    printf("\nPID=%d: PATH FOUND BUT NOT VALID\n", pid); // must be unreachable
                 }
             } else if (rc == PATH_FOUND_ANOTHER) {
-                printf("\npid = %d: PATH FOUND BY ANOTHER PROCESS\n", pid);
+                printf("\nPID = %d: PATH FOUND BY ANOTHER PROCESS\n", pid);
             } else if (rc == PATH_NOT_FOUND) {
-                printf("\npid = %d: PATH NOT FOUND\n", pid);
+                printf("\nPID = %d: PATH NOT FOUND\n", pid);
             } else {
                 error_code_handler(rc);
             }

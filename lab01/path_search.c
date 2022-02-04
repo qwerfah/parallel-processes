@@ -138,6 +138,11 @@ err_code_t find_path(board_t *board, pos_t pos, unsigned move_num) {
         pos_t next_pos;
 
         if (try_find_next_pos(board, pos, &next_pos)) {
+            if ((rc = check()) != PATH_NOT_FOUND) {
+                free(stack);
+                return rc;
+            }
+
             stack[sp++] = pos;
             pos = next_pos;
             move_num++;
